@@ -1,0 +1,68 @@
+<style>
+  ion-list + ion-list {
+    margin-top: 0;
+  }
+</style>
+
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>
+      CONTRO DE LLENADO DE TANQUE
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-grid>
+    <ion-row>
+      <!--Nivel de tanque-->
+      <ion-col col-12 class="colTanq">
+        <ion-list-header>
+          Nivel del tanque
+          <ion-icon name="ios-water" color="primary"></ion-icon>
+          <ion-badge item-end color="Primary">{{level}}</ion-badge>
+        </ion-list-header>
+        <div class="tWater">
+          <ion-item>
+            <ion-range min="0" max="20" step="1" snaps="true" [(ngModel)]="level">
+            </ion-range>
+          </ion-item>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <!-- Temperatura -->
+      <ion-col col-12>
+        <ion-list-header>
+          Temperatura:
+          <ion-badge item-end color="danger">{{temp}}</ion-badge>
+        </ion-list-header>
+        <ion-item>
+          <ion-range min="15" max="60" step="1" snaps="true" color="danger" [(ngModel)]="temp">
+            <ion-icon range-left small name="ios-thermometer-outline"></ion-icon>
+            <ion-icon range-right name="ios-thermometer-outline"></ion-icon>
+          </ion-range>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <!--Botones-->
+    <ion-col col-12>
+      <ion-list-header>
+        Acciones
+      </ion-list-header>
+      <button ion-button small icon-start>
+        <ion-icon name="md-color-fill"></ion-icon>
+        Llenar
+      </button>
+      <button ion-button small icon-start>
+        <ion-icon name="ios-close-circle-outline"></ion-icon>
+        Parar
+      </button>
+      <button ion-button small icon-start (click)='btRefer()'>
+        <ion-icon name="ios-options-outline"></ion-icon>
+        Refer.
+      </button>
+    </ion-col>
+  </ion-grid>
+</ion-content>
