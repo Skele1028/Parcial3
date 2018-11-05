@@ -11,15 +11,12 @@ export class HomePage {
 
   temp: number = 40;
   level: number = 9;
-  
 
   constructor(public alertCtrl: AlertController) {
 
   }
 
-  referencia: string = '';
-
-  btRefer(){
+  btRefer() {
     let alert = this.alertCtrl.create({
       title: 'Nivel de referecia',
       message: "Ingrese una referencia para el nivel del tanque, debe ser un numero entre 0 y 20",
@@ -27,7 +24,7 @@ export class HomePage {
         {
           name: 'referencia',
           placeholder: 'Nivel de referencia',
-          type: 'number'
+          type:'number'
         },
       ],
       buttons: [
@@ -41,7 +38,8 @@ export class HomePage {
         {
           text: 'Aceptar',
           handler: data => {
-            if (data.referencia = '' || data.referencia == null) {
+            let validateObj = this.validateRefer(data);
+            if (!validateObj.isValid) {
               this.alertCtrl.create({
                 message: 'Debe ingresar una referencia',
                 buttons: [{ text: 'OK' }]
@@ -49,20 +47,34 @@ export class HomePage {
               return;
             }
             else {
-              this.referencia = data.referencia;
               console.log('se registro la referencia')
 
             }
             console.log('referencia - data');
             console.log(data.referencia);
+
           }
         }
       ]
-      
     });
     alert.present();
+    
   }
 
+  validateRefer(data) {
+    if (/[0-9]/.test(data.referencia)) {
+      return {
+        isValid: true,
+        message: ''
+      };
+    } else {
+      return {
+        isValid: false,
+        message: 'Refer address is required'
+      }
+    }
+  }
 
 }
+
 
